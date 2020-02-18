@@ -1,8 +1,8 @@
 
 # Kotlin Scripting Examples: `kotlin-main-kts` usages
 
-Scripts demonstrating the usage of the `kotlin-main-kts` script definition jar, distributied with the Kotlin compiler
-and IntelliJ plugin.
+Scripts demonstrating the usage of the `kotlin-main-kts` script definition jar, distributed with the Kotlin compiler
+and the IntelliJ plugin.
 
 *See also [simplified implementation in this repository](../simple-main-kts/SimpleMainKts.md)*
 
@@ -44,7 +44,7 @@ provided that the shebang line is added to the script and works in the given OS 
 
 ### Caching
 
-The compiled scripts are cashed to the directory defined by an environmen variable `KOTLIN_MAIN_KTS_COMPILED_SCRIPTS_CACHE_DIR` 
+The compiled scripts are cashed to the directory defined by an environment variable `KOTLIN_MAIN_KTS_COMPILED_SCRIPTS_CACHE_DIR` 
 *(`$TEMP/main.kts.compiled.cache` by default)*, and if the script is not changed, the compiled one is executed from the cache.
 
 ### IntelliJ support

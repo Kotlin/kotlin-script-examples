@@ -2,7 +2,7 @@
 # Kotlin Scripting Examples: Script with Dynamic dependencies from Maven
 
 This example demonstrates the [script definition](script/) and appropriate [scripting host ](host/) that implements 
-support for dynamic dependencies from Maven repositories usage, so une can write a script:
+support for dynamic dependencies from Maven repositories usage, so one can write a script:
 ```kotlin
 @file:DependsOn("junit:junit:4.11")
 org.junit.Assert.assertTrue(true)

@@ -17,8 +17,8 @@ The script definition implementation demonstrates many aspects of the script def
 scripting API usage, in particular:
 - refinement of the compilation configuration with the parameters passed to the annotations
 - dynamic script dependencies resolved via ivy library
-- import scripts with possibility of sharing instances (diamond-shaped import)
-- compilation cache, where cached compiled script are saved as executable jars
+- import scripts with the possibility of sharing instances (diamond-shaped import)
+- compilation cache, where cached compiled scripts are saved as executable jars
 - discovery file configuration, that could be used with IntelliJ IDEA and command-line compiler
 
 and others.
