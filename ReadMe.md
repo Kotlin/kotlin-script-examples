@@ -20,7 +20,8 @@ when needed
 - [Simple script definition](jvm/basic/jvm-simple-script/SimpleScript.md)
 - [Script with Dynamic dependencies from Maven](jvm/basic/jvm-maven-deps/MavenDeps.md)
 - [Scripting Host with Kotlin Compiler Embeddable](jvm/basic/jvm-embeddable-host/EmbeddableCompiler.md)
-- [Simplified main-kts](jvm/simple-main-kts/SimpleMainKts.md)
+- [Simplified main-kts-like script implementation](jvm/simple-main-kts/SimpleMainKts.md)
+- [`main-kts` scripts examples](jvm/main-kts/MainKts.md)
 
 ## External examples
 
