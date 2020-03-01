@@ -21,7 +21,7 @@ fun evalFile(scriptFile: File): ResultWithDiagnostics<EvaluationResult> {
     val compilationConfiguration = createJvmCompilationConfigurationFromTemplate<SimpleScript> {
         jvm {
             // configure dependencies for compilation, they should contain at least the script base class and
-            // its dependencise
+            // its dependencies
             // variant 1: try to extract current classpath and take only a path to the specified "script.jar"
             dependenciesFromCurrentContext(
                 "script" /* script library jar name (exact or without a version) */
