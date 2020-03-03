@@ -14,7 +14,7 @@ line, replacing the simple Kotlin programs with `main` function (hence the `main
 ### Usage
 
 For example a script (note that the file should have an extension corresponding to the script definition, in this case 
-`.smain.kts`):
+`.main.kts`):
 
 ```kotlin
 println("Hello, ${args[0]}")
