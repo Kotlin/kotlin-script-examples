@@ -39,9 +39,9 @@ class ResolveTest {
         val res = evalFile(File("testData/hello-maven-resolve-error.scriptwithdeps.kts"))
 
         Assert.assertTrue(
-            "test failed - expecting a failure with the message \"Unknown set of arguments to maven resolver: abracadabra\" but received " +
-                    (if (res is ResultWithDiagnostics.Failure) "failure" else "success") +
-                    ":\n  ${res.reports.joinToString("\n  ") { it.message + if (it.exception == null) "" else ": ${it.exception}" }}",
-            res is ResultWithDiagnostics.Failure && res.reports.any { it.message.contains("Unknown set of arguments to maven resolver: abracadabra") })
+                "test failed - expecting a failure with the message \"File 'abracadabra' not found\" but received " +
+                        (if (res is ResultWithDiagnostics.Failure) "failure" else "success") +
+                        ":\n  ${res.reports.joinToString("\n  ") { it.message + if (it.exception == null) "" else ": ${it.exception}" }}",
+                res is ResultWithDiagnostics.Failure && res.reports.any { it.message.contains("File 'abracadabra' not found") })
     }
 }

@@ -1,9 +1,9 @@
 
 plugins {
-    kotlin("jvm") version "1.3.70"
+    kotlin("jvm") version "1.4.0"
 }
 
-val kotlinVersion: String by extra("1.3.70")
+val kotlinVersion: String by extra("1.4.0")
 
 allprojects {
     repositories {

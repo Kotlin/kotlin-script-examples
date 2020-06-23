@@ -8,10 +8,6 @@ package org.jetbrains.kotlin.script.examples.simpleMainKts
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.kotlin.script.examples.simpleMainKts.impl.IvyResolver
 import org.jetbrains.kotlin.script.examples.simpleMainKts.impl.resolveFromAnnotations
-import org.jetbrains.kotlin.script.util.CompilerOptions
-import org.jetbrains.kotlin.script.util.DependsOn
-import org.jetbrains.kotlin.script.util.Import
-import org.jetbrains.kotlin.script.util.Repository
 import java.io.File
 import java.net.JarURLConnection
 import java.net.URL
@@ -19,7 +15,9 @@ import java.security.MessageDigest
 import kotlin.script.experimental.annotations.KotlinScript
 import kotlin.script.experimental.api.*
 import kotlin.script.experimental.dependencies.CompoundDependenciesResolver
+import kotlin.script.experimental.dependencies.DependsOn
 import kotlin.script.experimental.dependencies.FileSystemDependenciesResolver
+import kotlin.script.experimental.dependencies.Repository
 import kotlin.script.experimental.host.FileBasedScriptSource
 import kotlin.script.experimental.host.FileScriptSource
 import kotlin.script.experimental.host.ScriptingHostConfiguration
@@ -40,18 +38,20 @@ const val COMPILED_SCRIPTS_CACHE_DIR_PROPERTY = "kotlin.simple.main.kts.compiled
 class SimpleMainKtsScriptDefinition : ScriptCompilationConfiguration(
     {
         defaultImports(DependsOn::class, Repository::class, Import::class, CompilerOptions::class)
+        implicitReceivers(String::class)
         jvm {
             val keyResource = SimpleMainKtsScriptDefinition::class.java.name.replace('.', '/') + ".class"
             val thisJarFile = SimpleMainKtsScriptDefinition::class.java.classLoader.getResource(keyResource)?.toContainingJarOrNull()
             if (thisJarFile != null) {
                 dependenciesFromClassContext(
                         SimpleMainKtsScriptDefinition::class,
-                        thisJarFile.name, "kotlin-stdlib", "kotlin-reflect", "kotlin-script-util"
+                        thisJarFile.name, "kotlin-stdlib", "kotlin-reflect", "kotlin-scripting-dependencies"
                 )
             } else {
                 dependenciesFromClassContext(SimpleMainKtsScriptDefinition::class, wholeClasspath = true)
             }
         }
+
         refineConfiguration {
             onAnnotations(DependsOn::class, Repository::class, Import::class, CompilerOptions::class, handler = MainKtsConfigurator())
         }
@@ -82,6 +82,7 @@ class SimpleMainKtsScriptDefinition : ScriptCompilationConfiguration(
 object MainKtsEvaluationConfiguration : ScriptEvaluationConfiguration(
     {
         scriptsInstancesSharing(true)
+        implicitReceivers("")
         refineConfigurationBeforeEvaluate(::configureConstructorArgsFromMainArgs)
     }
 )

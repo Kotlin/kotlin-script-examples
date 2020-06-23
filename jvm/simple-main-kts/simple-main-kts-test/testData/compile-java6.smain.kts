@@ -16,3 +16,5 @@ TestImpl().run {
     printSuper()
     printRandom()
 }
+
+val x = length // drop(4)

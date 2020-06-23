@@ -36,7 +36,11 @@ class IvyResolver : ExternalDependenciesResolver {
     override fun acceptsRepository(repositoryCoordinates: RepositoryCoordinates): Boolean =
         repositoryCoordinates.toRepositoryUrlOrNull() != null
 
-    override suspend fun resolve(artifactCoordinates: String): ResultWithDiagnostics<List<File>> {
+    override suspend fun resolve(
+            artifactCoordinates: String,
+            options: ExternalDependenciesResolver.Options,
+            sourceCodeLocation: SourceCode.LocationWithId?
+    ): ResultWithDiagnostics<List<File>> {
 
         val artifactType = artifactCoordinates.substringAfterLast('@', "").trim()
         val stringCoordinates = if (artifactType.isNotEmpty()) artifactCoordinates.removeSuffix("@$artifactType") else artifactCoordinates
@@ -124,7 +128,11 @@ class IvyResolver : ExternalDependenciesResolver {
         else report.allArtifactsReports.map { it.localFile }.asSuccess(diagnostics)
     }
 
-    override fun addRepository(repositoryCoordinates: RepositoryCoordinates) {
+    override fun addRepository(
+            repositoryCoordinates: RepositoryCoordinates,
+            options: ExternalDependenciesResolver.Options,
+            sourceCodeLocation: SourceCode.LocationWithId?
+    ): ResultWithDiagnostics<Boolean> {
         val url = repositoryCoordinates.toRepositoryUrlOrNull()
         if (url != null) {
             ivyResolvers.add(
@@ -134,6 +142,9 @@ class IvyResolver : ExternalDependenciesResolver {
                     root = url.toExternalForm()
                 }
             )
+            return true.asSuccess()
+        } else {
+            return false.asSuccess()
         }
     }
 

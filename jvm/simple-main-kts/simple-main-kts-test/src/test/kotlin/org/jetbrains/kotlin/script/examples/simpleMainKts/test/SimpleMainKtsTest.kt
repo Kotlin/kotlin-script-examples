@@ -5,6 +5,7 @@
 package org.jetbrains.kotlin.script.examples.simpleMainKts.test
 
 import org.jetbrains.kotlin.script.examples.simpleMainKts.COMPILED_SCRIPTS_CACHE_DIR_PROPERTY
+import org.jetbrains.kotlin.script.examples.simpleMainKts.MainKtsEvaluationConfiguration
 import org.jetbrains.kotlin.script.examples.simpleMainKts.SimpleMainKtsScript
 import org.junit.Assert
 import org.junit.Test
@@ -21,7 +22,7 @@ fun evalFile(scriptFile: File, cacheDir: File? = null): ResultWithDiagnostics<Ev
         withMainKtsCacheDir(cacheDir?.absolutePath ?: "") {
             val scriptDefinition = createJvmCompilationConfigurationFromTemplate<SimpleMainKtsScript>()
 
-            val evaluationEnv = ScriptEvaluationConfiguration {
+            val evaluationEnv = MainKtsEvaluationConfiguration.with {
                 jvm {
                     baseClassLoader(null)
                 }

@@ -5,32 +5,36 @@
 
 package org.jetbrains.kotlin.script.examples.simpleMainKts.impl
 
-import org.jetbrains.kotlin.script.util.DependsOn
-import org.jetbrains.kotlin.script.util.Repository
 import java.io.File
-import kotlin.script.experimental.api.ResultWithDiagnostics
-import kotlin.script.experimental.api.flatMapSuccess
-import kotlin.script.experimental.api.makeFailureResult
+import kotlin.script.experimental.api.*
+import kotlin.script.experimental.dependencies.DependsOn
 import kotlin.script.experimental.dependencies.ExternalDependenciesResolver
-import kotlin.script.experimental.dependencies.tryAddRepository
+import kotlin.script.experimental.dependencies.Repository
+import kotlin.script.experimental.dependencies.addRepository
 
 suspend fun resolveFromAnnotations(resolver: ExternalDependenciesResolver, annotations: Iterable<Annotation>): ResultWithDiagnostics<List<File>> {
+    val reports = mutableListOf<ScriptDiagnostic>()
     annotations.forEach { annotation ->
         when (annotation) {
             is Repository -> {
-                val repositoryCoordinates = with(annotation) { value.takeIf { it.isNotBlank() } ?: url }
-                if (!resolver.tryAddRepository(repositoryCoordinates))
-                    return makeFailureResult("Unrecognized repository coordinates: $repositoryCoordinates")
-            }
-            is DependsOn -> {}
+                for (coordinates in annotation.repositoriesCoordinates) {
+                    val added = resolver.addRepository(coordinates)
+                            .also { reports.addAll(it.reports) }
+                            .valueOr { return it }
+
+                    if (!added)
+                        return reports + makeFailureResult(
+                                "Unrecognized repository coordinates: $coordinates"
+                        )
+                }
+            }            is DependsOn -> {}
             else -> return makeFailureResult("Unknown annotation ${annotation.javaClass}")
         }
     }
-    return annotations.filterIsInstance(DependsOn::class.java).flatMapSuccess { dep ->
-        val artifactCoordinates =
-            if (dep.value.isNotBlank()) dep.value
-            else listOf(dep.groupId, dep.artifactId, dep.version).filter(String::isNotBlank).joinToString(":")
-        resolver.resolve(artifactCoordinates)
+    return annotations.filterIsInstance(DependsOn::class.java).flatMapSuccess { annotation ->
+        annotation.artifactsCoordinates.asIterable().flatMapSuccess { artifactCoordinates ->
+            resolver.resolve(artifactCoordinates)
+        }
     }
 }
 
