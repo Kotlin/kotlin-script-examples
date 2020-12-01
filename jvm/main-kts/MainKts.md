@@ -44,7 +44,7 @@ provided that the shebang line is added to the script and works in the given OS 
 
 ### Caching
 
-The compiled scripts are cashed to the directory defined by an environment variable `KOTLIN_MAIN_KTS_COMPILED_SCRIPTS_CACHE_DIR` 
+The compiled scripts are cached to the directory defined by an environment variable `KOTLIN_MAIN_KTS_COMPILED_SCRIPTS_CACHE_DIR` 
 *(`$TEMP/main.kts.compiled.cache` by default)*, and if the script is not changed, the compiled one is executed from the cache.
 
 ### IntelliJ support
