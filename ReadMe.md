@@ -12,7 +12,7 @@ request with the link and short description.
 The complete project could be compiled with Gradle, as well as imported e.g. in IntelliJ IDEA.
 
 The individual example projects are mostly independent and could be copied and reused independently, but build files
-should be adopted accordingly, mostly to supply required Kotlin version properties and setup inter-project dependencies
+should be adapted accordingly, mostly to supply required Kotlin version properties and setup inter-project dependencies
 when needed
 
 ### Script definitions with scripting hosts
