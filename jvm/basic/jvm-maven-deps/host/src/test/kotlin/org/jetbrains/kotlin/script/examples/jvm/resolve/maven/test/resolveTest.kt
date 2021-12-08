@@ -24,6 +24,16 @@ class ResolveTest {
     }
 
     @Test
+    fun testKotlinxHtml() {
+        val res = evalFile(File("testData/hello-kotlinx-html.scriptwithdeps.kts"))
+
+        Assert.assertTrue(
+            "test failed:\n  ${res.reports.joinToString("\n  ") { it.message + if (it.exception == null) "" else ": ${it.exception}" }}",
+            res is ResultWithDiagnostics.Success
+        )
+    }
+
+    @Test
     fun testUnresolvedJunit() {
         val res = evalFile(File("testData/hello-unresolved-junit.scriptwithdeps.kts"))
 
