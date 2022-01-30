@@ -30,14 +30,14 @@ abstract class ScriptWithMavenDeps
 
 object ScriptWithMavenDepsConfiguration : ScriptCompilationConfiguration(
     {
-        // adds implicit import statements (in this case `implort kotlin.script.experimental.dependencies.DependsOn`, etc.)
+        // adds implicit import statements (in this case `import kotlin.script.experimental.dependencies.DependsOn`, etc.)
         // to each script on compilation
         defaultImports(DependsOn::class, Repository::class)
 
         jvm {
             // the dependenciesFromCurrentContext helper function extracts the classpath from current thread classloader
             // and take jars with mentioned names to the compilation classpath via `dependencies` key.
-            // to add the whole classpath for the classloader without check for jar presense, use
+            // to add the whole classpath for the classloader without check for jar presence, use
             // `dependenciesFromCurrentContext(wholeClasspath = true)`
             dependenciesFromCurrentContext(
                 "script", // script library jar name
@@ -46,7 +46,7 @@ object ScriptWithMavenDepsConfiguration : ScriptCompilationConfiguration(
         }
         // section that callbacks during compilation
         refineConfiguration {
-            // the callback called than any of the listed file-level annotations are encountered in the compiled script
+            // the callback called when any of the listed file-level annotations are encountered in the compiled script
             // the processing is defined by the `handler`, that may return refined configuration depending on the annotations
             onAnnotations(DependsOn::class, Repository::class, handler = ::configureMavenDepsOnAnnotations)
         }
