@@ -9,7 +9,9 @@ import eu.jrie.jetbrains.kotlinshell.shell.*
 
 shell {
     if (args.isEmpty()) {
-        "ls -l"()
+        val isWindows = System.getProperty("os.name").lowercase().contains("win")
+        if (isWindows) "cmd /c dir"()
+        else "ls -l"()
     } else {
         var lines = 0
         var words = 0
