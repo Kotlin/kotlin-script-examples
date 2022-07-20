@@ -88,7 +88,7 @@ class SimpleMainKtsTest {
     fun testCompilerOptions() {
 
         val out = captureOut {
-            val res = evalFile(File("$TEST_DATA_ROOT/compile-java6.smain.kts"))
+            val res = evalFile(File("$TEST_DATA_ROOT/compiler-options.smain.kts"))
             assertSucceeded(res)
             assertIsJava6Bytecode(res)
         }.lines()
@@ -144,7 +144,7 @@ class SimpleMainKtsTest {
             if (0xCAFEBABE.toInt() != header) throw IOException("Invalid header class header: $header")
             stream.readUnsignedShort() // minor
             val major = stream.readUnsignedShort()
-            Assert.assertTrue(major == 50)
+            Assert.assertEquals(52, major)
         }
     }
 

@@ -7,6 +7,7 @@ package org.jetbrains.kotlin.script.examples.jvm.jsr223.simple
 
 import javax.script.ScriptEngineManager
 
+@Suppress("UNUSED_PARAMETER")
 fun main(vararg args: String) {
     val engine = ScriptEngineManager().getEngineByExtension("kts")!!
 
