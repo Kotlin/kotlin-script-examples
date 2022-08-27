@@ -26,7 +26,7 @@ when needed
 
 ## External examples
 
-- [kotlin-asyncapi: Maven plugin and Spring Boot executable JAR scripting hosts](jvm/basic/jvm-simple-script/SimpleScript.md)
+- [kotlin-asyncapi: Maven plugin and Spring Boot executable JAR scripting hosts](https://github.com/OpenFolder/kotlin-asyncapi)
 
 ## License
 The Apache 2 license (given in full in [LICENSE.txt](license/LICENSE.txt) applies to all code in this repository which 
