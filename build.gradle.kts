@@ -1,14 +1,14 @@
 
 plugins {
-    kotlin("jvm") version "1.7.10"
+    kotlin("jvm") version "1.8.21"
 }
 
-val kotlinVersion: String by extra("1.7.10")
-val kotlinCoroutinesVersion: String by extra("1.6.4")
+val kotlinVersion: String by extra("1.8.21")
+val kotlinCoroutinesVersion: String by extra("1.7.0-RC")
 
 allprojects {
     repositories {
-        jcenter()
+        mavenCentral()
     }
 }
 
