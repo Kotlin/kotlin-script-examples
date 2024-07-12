@@ -1,3 +1,11 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        mavenLocal()
+    }
+}
 
 include("jvm:basic:jvm-simple-script:script")
 include("jvm:basic:jvm-simple-script:host")

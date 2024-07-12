@@ -69,6 +69,7 @@ class SimpleMainKtsScriptDefinition : ScriptCompilationConfiguration(
         ide {
             acceptedLocations(ScriptAcceptedLocation.Everywhere)
         }
+        compilerOptions("-language-version", "1.9")
         hostConfiguration(ScriptingHostConfiguration {
             jvm {
                 val cacheExtSetting = System.getProperty(COMPILED_SCRIPTS_CACHE_DIR_PROPERTY)

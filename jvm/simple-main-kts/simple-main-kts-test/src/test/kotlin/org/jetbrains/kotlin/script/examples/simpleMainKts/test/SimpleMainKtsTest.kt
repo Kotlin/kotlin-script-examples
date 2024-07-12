@@ -39,6 +39,12 @@ const val TEST_DATA_ROOT = "testData"
 class SimpleMainKtsTest {
 
     @Test
+    fun testCompose() {
+        val res = evalFile(File("$TEST_DATA_ROOT/compose.smain.kts"))
+        assertSucceeded(res)
+    }
+
+    @Test
     fun testResolveJunit() {
         val res = evalFile(File("$TEST_DATA_ROOT/hello-resolve-junit.smain.kts"))
         assertSucceeded(res)
