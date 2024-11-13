@@ -1,21 +1,23 @@
 #!/usr/bin/env kotlin
 
 @file:DependsOn("eu.jrie.jetbrains:kotlin-shell-core:0.2.1")
-@file:DependsOn("org.slf4j:slf4j-simple:1.7.28")
 @file:CompilerOptions("-Xopt-in=kotlin.RequiresOptIn")
 @file:OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+@file:Suppress("OPT_IN_ARGUMENT_IS_NOT_MARKER")
 
-import eu.jrie.jetbrains.kotlinshell.shell.*
+
+import eu.jrie.jetbrains.kotlinshell.shell.shell
 
 shell {
     if (args.isEmpty()) {
+        "echo this is 'ls -l' command for current directory: ${env("PWD")}"()
         "ls -l"()
     } else {
         var lines = 0
         var words = 0
         var chars = 0
 
-        var wasSpace = false
+        var wasSpace = true
 
         pipeline {
             "cat ${args[0]}".process() pipe
@@ -38,7 +40,7 @@ shell {
         }
 
         println("My wc:")
-        println("$lines $words $chars")
+        println("       $lines      $words     $chars ${args[0]}")
         println("System wc:")
         "wc ${args[0]}"()
     }

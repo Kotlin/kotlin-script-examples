@@ -2,7 +2,8 @@
 
 @file:DependsOn("org.jetbrains.kotlinx:kotlinx-html-jvm:0.8.0")
 
-import kotlinx.html.*; import kotlinx.html.stream.*; import kotlinx.html.attributes.*
+import kotlinx.html.*
+import kotlinx.html.stream.createHTML
 
 val addressee = args.firstOrNull() ?: "World"
 
