@@ -40,7 +40,11 @@ or even as simple as
 ./script.main.kts
 ```
 
-provided that the shebang line is added to the script and works in the given OS shell. *(See examples below.)*
+provided that the shebang line is added to the script and works in the given OS shell
+
+```
+#!/usr/bin/env kotlin
+```
 
 ### Caching
 
@@ -60,4 +64,12 @@ including navigation into imported libraries.
 [`kotlinx-html` library](https://github.com/Kotlin/kotlinx.html) by JetBrains, to generate HTML output 
 - [`kotlin-shell.main.kts`](scripts/kotlin-shell.main.kts) demonstrates usage of the 
 [`kotlin-shell` library](https://github.com/jakubriegel/kotlin-shell) by Jakub Riegel, to execute OS shell commands
-with easy interaction with Kotlin code
+with easy interaction with Kotlin code and can be executed:
+
+  - without arguments - executes "ls -l" command for curren directory
+  - with argument - executes "wc" command for a file 
+
+  ```
+  kotlin kotlin-shell.main.kts main-kts/example.txt
+  ```
+
