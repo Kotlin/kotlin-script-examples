@@ -11,6 +11,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-scripting-jvm:$kotlinVersion")
     implementation("org.jetbrains.kotlin:kotlin-scripting-jvm-host:$kotlinVersion")
     implementation("org.jetbrains.kotlin:kotlin-main-kts:$kotlinVersion")
-    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.13.1")
 }
 
