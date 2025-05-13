@@ -3,5 +3,6 @@
 out/
 build/
 tmp/
+jvm/main-kts/scripts/forTests/
 *.iml
 
