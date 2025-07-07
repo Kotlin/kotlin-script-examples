@@ -72,4 +72,5 @@ with easy interaction with Kotlin code and can be executed:
   ```
   kotlin kotlin-shell.main.kts main-kts/example.txt
   ```
+- [`composite/composite.main.kts`](scripts/composite/composite.main.kts) demonstrates script composition capabilities via `@file:Import` annotation
 
