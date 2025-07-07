@@ -1,5 +1,26 @@
 #!/usr/bin/env kotlin
 
+/**
+ * A command-line utility script that provides directory listing and word counting functionality.
+ *
+ * Usage:
+ * - Without arguments: Lists files in the current directory (equivalent to `ls -l`)
+ * - With file argument: Performs word count analysis (similar to `wc` command)
+ *      Shows both custom implementation and system `wc` command results
+ *
+ * Example usage:
+ * ```
+ * ./kotlin-shell.main.kts           # Lists directory contents
+ * ./kotlin-shell.main.kts file.txt  # Counts lines, words, and characters in file.txt
+ * ```
+ *
+ * Dependencies:
+ * - kotlin-shell-core:0.2.1
+ *
+ * @param args - command line arguments. If provided, the first argument should be a file path
+ */
+
+
 @file:DependsOn("eu.jrie.jetbrains:kotlin-shell-core:0.2.1")
 @file:CompilerOptions("-Xopt-in=kotlin.RequiresOptIn")
 @file:OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
