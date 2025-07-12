@@ -47,7 +47,7 @@ class SimpleMainKtsTest {
     @Test
     fun testResolveJunitDynamicVer() {
         val errRes = evalFile(File("$TEST_DATA_ROOT/hello-resolve-junit-dynver-error.smain.kts"))
-        assertFailed("Unresolved reference: assertThrows", errRes)
+        assertFailed("Unresolved reference 'assertThrows'", errRes)
 
         val res = evalFile(File("$TEST_DATA_ROOT/hello-resolve-junit-dynver.smain.kts"))
         assertSucceeded(res)
@@ -56,7 +56,7 @@ class SimpleMainKtsTest {
     @Test
     fun testUnresolvedJunit() {
         val res = evalFile(File("$TEST_DATA_ROOT/hello-unresolved-junit.smain.kts"))
-        assertFailed("Unresolved reference: junit", res)
+        assertFailed("Unresolved reference 'junit'", res)
     }
 
     @Test
