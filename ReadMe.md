@@ -25,6 +25,10 @@ when needed
 - [`main-kts` scripts examples](jvm/main-kts/MainKts.md)
 - [using scripting via JSR 223 interface](jvm/jsr223/jsr223.md)
 
+### Script definitions with IDE support
+
+- [`.mcp.kts`: typed bindings generated from a remote server, with an IntelliJ IDEA plugin](jvm/mcp-kts/readme.md) — open it as a separate Gradle project
+
 ## External examples
 
 - [kotlin-asyncapi: Maven plugin and Spring Boot executable JAR scripting hosts](https://github.com/OpenFolder/kotlin-asyncapi)

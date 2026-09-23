@@ -1,5 +1,7 @@
 .idea/
 .gradle/
+.kotlin/
+.intellijPlatform/
 out/
 build/
 tmp/
