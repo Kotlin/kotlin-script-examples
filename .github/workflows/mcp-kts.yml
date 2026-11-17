@@ -1,0 +1,30 @@
+# The mcp-kts example is a standalone Gradle build (jvm/mcp-kts), not part of the root project, so
+# it needs its own pipeline. It runs only when that directory changes: building the IntelliJ plugin
+# downloads a ~1.5 GB IDE distribution, which no unrelated pull request should have to wait for.
+name: mcp-kts example
+
+on:
+  pull_request:
+    paths:
+      - 'jvm/mcp-kts/**'
+      - '!jvm/mcp-kts/**.md'
+      - '.github/workflows/mcp-kts.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: 21
+          distribution: jetbrains
+
+      - name: Build and test the script definition
+        run: ./gradlew -p jvm/mcp-kts build -x :mcp-intellij-plugin:build
+
+      - name: Build the IntelliJ plugin
+        run: ./gradlew -p jvm/mcp-kts buildPlugin

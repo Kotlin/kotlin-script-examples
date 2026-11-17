@@ -1,0 +1,42 @@
+<idea-plugin>
+    <id>com.jetbrains.mcpkts</id>
+    <name>MCP Kotlin Script</name>
+    <description><![CDATA[
+        Adds support for <b>.mcp.kts</b> — a Kotlin script type that connects to MCP servers and generates typed bindings from their tool schemas.
+
+        <br/><br/>
+
+        <b>How it works:</b>
+        <ul>
+            <li>Declare an MCP server with <code>@file:McpServer("name", "url")</code></li>
+            <li>Get typed, autocompleted access to all server tools</li>
+        </ul>
+
+        <b>Example:</b>
+        <pre>
+        @file:McpServer("youtrack", "https://youtrack.jetbrains.com/mcp")
+
+        youtrack.searchIssues(query = "project: KT #Unresolved").issues.forEach { println(it.summary) }
+        </pre>
+
+        Tool schemas are fetched from the server and the generated bindings are written next to the
+        script under <code>mcp-kts-generated/</code>. Opening or reloading the script re-probes the
+        server and rewrites the bindings; if the server is unreachable the last generated bindings are reused.
+
+        <br/><br/>
+        Keywords: MCP, Model Context Protocol, Kotlin scripting, kts, AI tools, agent, mcp.kts
+        ]]>
+    </description>
+
+    <vendor email="vladislav.koshkin@jetbrains.com">Vlad Koshkin</vendor>
+
+    <dependencies>
+        <plugin id="org.jetbrains.kotlin"/>
+        <!-- ScriptDefinitionsProvider lives in this content module of the Kotlin plugin, with its own class loader. -->
+        <module name="kotlin.scripting"/>
+    </dependencies>
+
+    <extensions defaultExtensionNs="org.jetbrains.kotlin">
+        <scriptDefinitionsProvider implementation="com.jetbrains.mcpkts.intellij.McpScriptDefinitionsProvider"/>
+    </extensions>
+</idea-plugin>
