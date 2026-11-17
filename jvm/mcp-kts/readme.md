@@ -37,7 +37,7 @@ This example is a **standalone Gradle build**, not part of the root `kotlin-scri
 It is deliberately not linked: it pins its own Kotlin version, and its plugin module pulls a ~1.5 GB
 IDE distribution.
 
-The plugin targets IntelliJ IDEA 2027.1 (build 271), and `runIde` starts its nightly build.
+The plugin targets IntelliJ IDEA 2026.3 (build 263), and `runIde` starts it.
 
 It has no wrapper script of its own; drive it from the repository root:
 

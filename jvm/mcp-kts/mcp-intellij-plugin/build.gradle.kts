@@ -6,8 +6,6 @@ plugins {
 repositories {
     intellijPlatform {
         defaultRepositories()
-        // IntelliJ IDEA 2027.1 nightly. 2026.3 runs scripts with kotlinc 2.4.10, which crashes on imported scripts (KT-87958);
-        nightly()
     }
 }
 
@@ -17,8 +15,8 @@ dependencies {
     }
 
     intellijPlatform {
-        // Nightlies ship only as the Maven zip, which has no JBR: hence jetbrainsRuntime().
-        intellijIdea("271-SNAPSHOT") { useInstaller = false }
+        // The Maven zip instead of the installer (no DMG to mount on macOS); it has no JBR, hence jetbrainsRuntime().
+        intellijIdea("2026.3") { useInstaller = false }
         jetbrainsRuntime()
         bundledPlugin("org.jetbrains.kotlin")
     }
@@ -27,7 +25,7 @@ dependencies {
 intellijPlatform {
     pluginConfiguration {
         ideaVersion {
-            sinceBuild = "271"
+            sinceBuild = "263"
             untilBuild = "271.*"
         }
     }
